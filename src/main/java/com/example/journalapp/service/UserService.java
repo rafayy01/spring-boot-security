@@ -5,6 +5,8 @@ import com.example.journalapp.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -26,5 +28,9 @@ public class UserService {
         user.setPassword(encodedPassword);
 
         return userRepository.save(user);
+    }
+
+    public List<User> getAllUsers (){
+        return userRepository.findAll();
     }
 }
