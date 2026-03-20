@@ -35,4 +35,18 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);        }
     }
 
+    @PostMapping("/signin")
+    private ResponseEntity<String> authentication(@RequestBody User user){
+        try{
+            String jwtToken = userService.authenticate(user);
+            if(jwtToken != null){
+                return new ResponseEntity<>(jwtToken,HttpStatus.FOUND);
+            }else{
+                return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);        }
+    }
+
 }
